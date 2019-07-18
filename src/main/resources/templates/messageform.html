@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title> Message List Form</title>
+    <!-- Bootstrap-->
+
+    <div th:fragment="bootstrap">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </div>
+
+</head>
+<style type="text/css">
+
+    body
+    {
+        margin: 50px 0px;
+        padding: 0px;
+        text-align: center;
+        align: center;
+    }
+
+    form {
+        text-align: center;
+    }
+</style>
+<body>
+
+<div class="jumbotron text-center">
+    <h1 class="display-4" name="title">Message Board </h1>
+    <p>NO PROFINITIES, PLEASE!</p>
+<div class="container">
+    <div class="row">
+        <div class ="col">
+            <div class="card">
+                <img class="card-img-top"
+                     src="https://res.cloudinary.com/dhqp1gurz/image/upload/v1563475289/competition-race-SB-620x330_lxbw2t.jpg">
+                <div class="card-body">
+                        <form action="#"
+                              th:action="@{/process}"
+                              th:object="${message}"
+                              method="post">
+                            <input type="hidden" th:field="*{id}" />
+
+                            ID :<input type="text" th:field="*{id}" />
+                            <span th:if="${#fields.hasErrors('id')}"
+                                  th:errors="*{id}"></span><br/>
+
+                            Title :<input type="text" th:field="*{title}" />
+                            <span th:if="${#fields.hasErrors('title')}"
+                                  th:errors="*{title}"></span><br/>
+
+                            Content :<textarea rows="4" th:field="*{content}" />
+                            <span th:if="${#fields.hasErrors('content')}"
+                                  th:errors="*{content}"></span><br/>
+
+                            Posted BY :<input type="text" th:field="*{postedBy}" />
+                            <span th:if="${#fields.hasErrors('postedBy')}"
+                                  th:errors="*{postedBy}"></span><br/>
+
+                            Post Date(mmddyy) :<input type="text" th:field="*{postDate}" />
+                            <span th:if="${#fields.hasErrors('postDate')}"
+                                  th:errors="*{postDate}"></span><br/>
+
+                            <input type="submit" value="submit"/>
+
+                            <div class="blink_me">
+                                <a href="/add" class="btn btn-primary blink_me">Add Message</a>
+                            </div>
+
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
